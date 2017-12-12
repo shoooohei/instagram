@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+
+      <div class="thumbnail">
+      <h4>以下の内容で、送信する</h4>
+      <%= form_with(model: @picture, url: pictures_path, remote: true) do |form| %>
+        <%= form.hidden_field :comment %>
+        <%= hidden_field_tag :"cache[image]", @picture.image.cache_name %>
+
+        <% if @picture.image.present? %>
+          <p>画像：<%= image_tag (@picture.image.url), width: 100 %></p>
+        <% end %>
+        <p>コメント：<%= @picture.comment %></p>
+        <%= form.submit "投稿する", class: 'btn btn-default' %>
+      <% end %>
+
+      <%= form_with(model: @picture, url: new_picture_path, remote: true, method: 'get') do |form| %>
+        <%= form.hidden_field :comment %>
+        <%= form.submit "戻る", name: 'back', class: 'btn btn-default' %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

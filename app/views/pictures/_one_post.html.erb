@@ -1,0 +1,56 @@
+<div class="thumbnail">
+
+  <div class="posting_person row">
+    <div class="col-xs-10">
+      <% if picture.user.user_icon.present? %>
+        <%= image_tag "#{picture.user.user_icon.image}", width: 50 %>
+      <% else %>
+        <%= image_tag "default_user_img.png", width: 50 %>
+      <% end %>
+      <%= picture.user.name %>
+    </div>
+    <div class="col-xs-2">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <% if picture.user == current_user %>
+          <li><%= link_to '編集', edit_picture_path(picture.id), remote: true %></li>
+          <li><%= link_to '削除', picture_path(picture.id),
+          remote: true, data: { confirm: '削除しますか？' },
+          method: :delete %>
+          </li>
+        <% else %>
+          <li>報告する</li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="posted_image row">
+    <%= image_tag "#{picture.image}", class: "col-xs-12" %>
+  </div>
+  <p class="picture_comment"><%= picture.comment %></p>
+  <div class="other_comments">
+    <!-- 新しくコメントをajaxで追加したときに、編集と削除をできるようにするために、for_edit_commentクラスを追加するためのdiv -->
+    <div class="for_new_comment">
+
+      <% if picture.other_comments.present? %>
+        <% all_other_comments = picture.other_comments.order(created_at: :asc) %>
+        <% all_other_comments.each do |each_other_comment| %>
+          <div class="for_edit_comment">
+
+            <%= render 'other_comments/each_other_comment', each_other_comment: each_other_comment %>
+
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <%= render 'other_comments/form_comment', picture_id: picture.id %>
+
+  </div>
+</div>

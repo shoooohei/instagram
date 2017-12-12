@@ -1,0 +1,32 @@
+html {
+  background-color: #FAFAFA
+}
+
+body {
+  background-color: #FAFAFA;
+}
+
+.picture_comment {
+  word-wrap: break-word;
+  overflow: scroll;
+  white-space: pre-wrap;
+}
+
+.posting_person {
+    height: 60px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.posted_image {
+  margin-bottom: 20px;
+}
+
+.each_other_comment p {
+  word-wrap: break-word;
+  overflow: scroll;
+}
+
+span.for_edit {
+  margin-left: 20px;
+}

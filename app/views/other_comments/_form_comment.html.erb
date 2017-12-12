@@ -1,0 +1,21 @@
+<div class="each_other_comment row" data-comment="<%= @id_comment %>">
+  <%= form_with(model: @other_comment, remote: true) do |form| %>
+
+    <div class="add_other_comment row">
+      <%= form.text_area :other_comment, rows: 3, placeholder: "コメントを追加...", class: "col-xs-11" %>
+
+      <!-- renderしてきているので新しいコメントの場合はpicture_idをつけないとvalidationにひっかかる -->
+      <% if @other_comment.id == nil %>
+        <%= form.hidden_field :picture_id, :value => "#{picture_id}" %>
+      <% end %>
+      <%= form.submit '投稿する', data: { confirm: '投稿しますか？' }, class: 'btn btn-default' %>
+
+    </div>
+
+  <% end %>
+
+<!-- すでにつけられているother_commentを編集する際のキャンセルボタン。unlessをつけないとindexで表示されるときにエラーになる。 -->
+  <% unless @other_comment.id.nil? %>
+    <%= link_to 'キャンセル', cancel_other_comment_path(@other_comment.id), remote: true, class: 'btn btn-default' %>
+  <% end %>
+</div>

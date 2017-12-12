@@ -1,0 +1,22 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="thumbnail">
+      <h4>編集する</h4>
+      <%= form_with(model: @picture, url: picture_path, remote: true) do |form| %>
+
+        <%= hidden_field_tag :"cache[image]", @picture.image.cache_name %>
+        <p>画像：<%= image_tag (@picture.image.url), width: 100 %></p>
+
+        <div class="new_comment row">
+          <%= form.text_area :comment, rows: 3, placeholder: "コメントを追加...", class: "col-xs-11", id: "new_text" %>
+        </div>
+
+        <%= form.submit "投稿する", class: 'btn btn-default' %>
+      <% end %>
+
+      <%= link_to 'キャンセル', cancel_pictures_path, remote: true, class: 'btn btn-default' %>
+    </div>
+
+  </div>
+</div>

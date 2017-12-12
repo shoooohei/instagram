@@ -1,0 +1,13 @@
+<% if @status = 'success' %>
+
+  // 新しいコメントを追加した後、ajaxで編集・削除できるようにfor_new_commentの一番下に追加。下で、編集・削除時に取得する設定にしているクラスであるfor_edit_commentで囲ってあげる。addVClassでは編集するためびにどんどんdivタグが増えていってしまう。
+
+  $('.for_new_comment').append("<%= j(render'each_other_comment', each_other_comment: @other_comment) %>");
+
+  var idComment = <%= @other_comment.id %>;
+
+  $('.row[data-comment="'+idComment+'"]').wrap("<div class='for_edit_comment'></div>");
+
+<% elsif @status = 'fail' %>
+  alert('error!');
+<% end %>

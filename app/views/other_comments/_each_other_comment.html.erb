@@ -1,0 +1,21 @@
+<div class="each_other_comment row" data-comment="<%= each_other_comment.id %>">
+  <p class="col-xs-10"><strong><%= each_other_comment.user.name %></strong><span class="for_edit"><%= each_other_comment.other_comment %></span></p>
+  <div class="col-xs-2">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% if each_other_comment.user == current_user %>
+        <li><%= link_to '編集', edit_other_comment_path(each_other_comment.id), remote: true %></li>
+        <li><%= link_to '削除', other_comment_path(each_other_comment.id),
+        remote: true, data: { confirm: '削除しますか？' },
+        method: :delete %>
+        </li>
+      <% else %>
+        <li>報告する</li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

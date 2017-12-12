@@ -1,0 +1,26 @@
+<h3>ユーザー情報</h3>
+
+<%= form_with(model: @user_icon, local: true) do |form| %>
+
+    <% if @user_icon.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= @user_icon.errors.count %>件のエラーがあります</h4>
+        <ul>
+        <% @user_icon.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <% if @user_icon.image.present? %>
+    <%= image_tag "#{@user_icon.image}", height: 100 %>
+  <% else %>
+    <%= image_tag "default_user_img.png", height: 100 %>
+  <% end %>
+
+<!-- ↓これがないとimageが空で送信したときstrong_paramsでエラーが起きる。 -->
+  <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
+  <%= form.file_field :image %>
+  <%= form.submit "更新する" %>
+<% end %>

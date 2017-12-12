@@ -1,0 +1,11 @@
+<% if @picture_errors.present? %>
+  jQuery(function($){
+      $("#user-modal").html("<%= escape_javascript(render 'pictures/form_post') %>");
+      $("#user-modal").modal("show");
+  });
+<% else %>
+  jQuery(function($){
+      $("#user-modal").html("<%= escape_javascript(render 'confirm') %>");
+      $("#user-modal").modal("show");
+  });
+<% end %>

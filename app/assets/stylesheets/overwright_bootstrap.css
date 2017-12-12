@@ -1,0 +1,58 @@
+.navbar-default {
+  background-color: #fff
+}
+
+.jumbotron {
+  background-color: #FAFAFA;
+}
+
+.new_comment.row {
+    margin-left: 0px;
+}
+
+.add_other_comment.row {
+    margin-left: 0px;
+}
+
+.posting_person.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.each_other_comment.row {
+    padding-left: 10px;
+}
+
+.dropdown .btn-default {
+  border-color: transparent;
+}
+
+.dropdown .dropdown-menu {
+  min-width: 50px;
+}
+
+.dropdown .dropdown-menu li {
+  text-align: center;
+}
+
+.dropdown {
+  opacity: 0;
+}
+
+/*.each_other_comment.row:hover p {
+  background-color: #ccc
+}*/
+
+.each_other_comment.row:hover .dropdown {
+  opacity: 1;
+}
+
+.posting_person.row:hover .dropdown {
+  opacity: 1;
+}
+
+
+.dropdown-menu li a:hover {
+  background-color: red;
+  color: white;
+}

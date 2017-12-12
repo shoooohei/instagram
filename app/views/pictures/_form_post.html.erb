@@ -1,0 +1,30 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="new_post">
+      <%= form_with(model: @picture, remote: true, url: confirm_pictures_path) do |form| %>
+
+        <div class="thumbnail">
+          <% if @picture.errors.any? %>
+            <div id="error_explanation">
+              <h4><%= @picture.errors.count %>件のエラーがあります</h4>
+              <ul>
+              <% @picture.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div id="choose_image">
+            <%= form.file_field :image %>
+          </div>
+          <div class="new_comment row">
+            <%= form.text_area :comment, rows: 3, placeholder: "コメントを追加...", class: "col-xs-11", id: "new_text" %>
+            <%= form.submit '投稿する', class: 'btn btn-default', id: 'new_submit' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

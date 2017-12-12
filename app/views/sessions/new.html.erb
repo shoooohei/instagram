@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <div class="container">
+
+    <%= form_with(scope: :session, url: sessions_path) do |f| %>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>ログイン</h4>
+        </div>
+        <table class="table">
+          <tr>
+            <th><%= f.label "メールアドレス"  %></th>
+            <td><%= f.email_field :email %></td>
+          </tr>
+          <tr>
+            <th><%= f.label "パスワード" %></th>
+            <td><%= f.password_field :password %></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><%= f.submit "ログイン", class: 'btn btn-default' %></td>
+          </tr>
+        </table>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
