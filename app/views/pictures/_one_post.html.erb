@@ -1,4 +1,4 @@
-<div class="thumbnail">
+<div class="thumbnail" data-comment="<%= picture.id %>">
 
   <div class="posting_person row">
     <div class="col-xs-10">
@@ -32,7 +32,11 @@
   <div class="posted_image row">
     <%= image_tag "#{picture.image}", class: "col-xs-12" %>
   </div>
-  <p class="picture_comment"><%= picture.comment %></p>
+<!-- picture_commentをajaxで編集できるようにするためのdiv   -->
+  <div class="picture_comment_parent">
+    <%= render 'picture_comment', picture: picture %>
+  </div>
+
   <div class="other_comments">
     <!-- 新しくコメントをajaxで追加したときに、編集と削除をできるようにするために、for_edit_commentクラスを追加するためのdiv -->
     <div class="for_new_comment">

@@ -1,5 +1,5 @@
 <% if @status == 'success' %>
-  $(".other_posts").prepend("<%= j(render'one_post', each_other_comment: @other_comment, picture: @picture) %>");
+  $(".other_posts").prepend("<%= j(render 'one_post', each_other_comment: @other_comment, picture: @picture) %>");
 <% elsif @status == 'fail' %>
   alert('error!');
 <% end %>

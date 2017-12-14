@@ -7,12 +7,10 @@ class OtherCommentsController < ApplicationController
 
     respond_to do |format|
       if @other_comment.save
-        format.html { redirect_to pictures_path }
         format.js { @status = 'success' }
       else
         @pictures = Picture.all.order(created_at: :desc)
         @picture = Picture.new
-        format.html { render 'pictures/index' }
         format.js { @status = 'fail' }
       end
     end
@@ -20,7 +18,6 @@ class OtherCommentsController < ApplicationController
 
   def edit
     respond_to do |format|
-      format.html { redirect_to pictures_path }
       format.js { @id_comment = @other_comment.id }
     end
   end
@@ -28,7 +25,6 @@ class OtherCommentsController < ApplicationController
   def cancel
     @other_comment = OtherComment.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to pictures_path }
       format.js { @id_comment = @other_comment.id }
     end
   end
@@ -36,10 +32,8 @@ class OtherCommentsController < ApplicationController
   def update
     respond_to do |format|
       if @other_comment.update(other_comment: params[:other_comment][:other_comment])
-        format.html { redirect_to pictures_path }
         format.js { @id_comment = @other_comment.id }
       else
-        format.html { render 'pictures/index' }
         format.js { @status = 'fail' }
       end
     end
@@ -50,7 +44,6 @@ class OtherCommentsController < ApplicationController
     @other_comment = OtherComment.find(params[:id])
     respond_to do |format|
       @other_comment.destroy
-      format.html { redirect_to pictures_path }
       format.js { @id_comment = @other_comment.id }
     end
   end

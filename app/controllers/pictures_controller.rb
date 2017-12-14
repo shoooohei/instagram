@@ -15,14 +15,12 @@ class PicturesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to pictures_path }
       format.js
     end
   end
 
   def confirm
     respond_to do |format|
-      format.html { redirect_to pictures_path }
       #確認画面だから、saveしたりしないためバリデーションをかける必要がある。
       if @picture.invalid?
         format.js { @picture_errors = @picture.errors }
@@ -39,11 +37,9 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to pictures_path, notice: '投稿しました' }
         format.js { @status = "success" }
       else
         @pictures = Picture.all.order(created_at: :desc)
-        format.html { render 'index' }
         format.js { @starus = "fail" }
       end
     end
@@ -51,29 +47,31 @@ class PicturesController < ApplicationController
 
   def edit
     respond_to do |format|
-      format.html { redirect_to pictures_path }
       format.js
     end
   end
 
   def cancel
     respond_to do |format|
-      format.html { redirect_to pictures_path }
       format.js
     end
   end
 
   def update
-    if @picture.update(edit_comment)
-      redirect_to edit_picture_path(@picture.id), notice: "更新しました"
-    else
-      render 'edit'
+    respond_to do |format|
+      if @picture.update(edit_comment)
+        format.js { @status = "success", @id_comment = @picture.id }
+      else
+        format.js { @status = 'fail' }
+      end
     end
   end
 
   def destroy
     @picture.destroy
-    redirect_to pictures_path
+    respond_to do |format|
+      format.js { @id_comment = @picture.id }
+    end
   end
 
   private
