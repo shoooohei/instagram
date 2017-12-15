@@ -220,7 +220,7 @@ DEPENDENCIES
   binding_of_caller
   byebug
   capybara (~> 2.13)
-  carrierwave
+  carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   fog-aws
   jbuilder (~> 2.5)

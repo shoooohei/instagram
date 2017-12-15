@@ -35,9 +35,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bcrypt', '3.1.11'
 
-gem 'carrierwave'
+
 gem 'mini_magick'
-gem 'fog-aws'
+gem 'fog-aws', group: :production
+gem 'carrierwave', '~> 1.0'
 
 
 group :development, :test do
