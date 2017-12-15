@@ -19,5 +19,4 @@
 .byebug_history
 
 /public/uploads
-carrier_wave.rb
 .env
