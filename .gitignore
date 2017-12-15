@@ -20,3 +20,4 @@
 
 /public/uploads
 carrier_wave.rb
+.env
