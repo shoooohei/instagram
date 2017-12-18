@@ -1,0 +1,4 @@
+
+  var idComment = <%= @id_comment %>;
+  console.log(idComment);
+  $('.favorite a[data-comment="'+idComment+'"]').parent().html("<%= escape_javascript(render 'on', picture: @picture) %>");

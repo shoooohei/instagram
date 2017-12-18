@@ -32,10 +32,28 @@
   <div class="posted_image row">
     <%= image_tag "#{picture.image}", class: "col-xs-12" %>
   </div>
-<!-- picture_commentをajaxで編集できるようにするためのdiv   -->
-  <div class="picture_comment_parent">
-    <%= render 'picture_comment', picture: picture %>
+
+  <div class="row">
+    <!-- picture_commentをajaxで編集できるようにするためのdiv   -->
+    <div class="picture_comment_parent col-xs-11">
+      <%= render 'picture_comment', picture: picture %>
+    </div>
+
+    <div class="favorite col-xs-1">
+      <% unless current_user == picture.user %>
+        <% if current_user.favorites.find_by(picture_id: picture.id).nil? %>
+
+          <%= render 'favorites/on', picture: picture %>
+
+        <% else %>
+
+          <%= render 'favorites/off', picture: picture %>
+
+        <% end %>
+      <% end %>
+    </div>
   </div>
+
 
   <div class="other_comments">
     <!-- 新しくコメントをajaxで追加したときに、編集と削除をできるようにするために、for_edit_commentクラスを追加するためのdiv -->

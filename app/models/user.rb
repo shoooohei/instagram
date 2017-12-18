@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_one :user_icon, dependent: :destroy
   has_many :other_comments, dependent: :destroy
-  has_many :pictures, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_pictures, through: :favorites, source: :picture
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :email, presence: true, uniqueness: true,

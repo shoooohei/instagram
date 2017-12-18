@@ -30,3 +30,11 @@ body {
 span.for_edit {
   margin-left: 20px;
 }
+
+.favorite a {
+  color: #000;
+}
+
+.favorite a:active {
+    opacity: .5;
+}

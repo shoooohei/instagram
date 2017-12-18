@@ -1,8 +1,8 @@
-<% if @status == 'success' %>
+<% if @status == "success" %>
   var idComment = <%= @id_comment %>;
 
   $('#picture_comment[data-comment="'+idComment+'"]').parent().html("<%= escape_javascript(render 'picture_comment', picture: @picture) %>");
-<% elsif @status == 'fail' %>
+<% else %>
   alert('error!');
 <% end %>
 

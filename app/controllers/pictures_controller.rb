@@ -37,10 +37,11 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
+        PictureMailer.picture_mail(@picture).deliver
         format.js { @status = "success" }
       else
         @pictures = Picture.all.order(created_at: :desc)
-        format.js { @starus = "fail" }
+        format.js { @status = "fail" }
       end
     end
   end
@@ -59,11 +60,9 @@ class PicturesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @picture.update(edit_comment)
-        format.js { @status = "success", @id_comment = @picture.id }
-      else
-        format.js { @status = 'fail' }
-      end
+      @picture.update(edit_comment)
+        @status = "success"
+        format.js { @id_comment = @picture.id }
     end
   end
 
