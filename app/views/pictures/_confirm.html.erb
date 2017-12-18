@@ -12,6 +12,7 @@
         <% end %>
         <p>コメント：<%= @picture.comment %></p>
         <%= form.submit "投稿する", class: 'btn btn-default' %>
+        <p id="note">※投稿するとメールが届きます。</p>
       <% end %>
 
       <%= form_with(model: @picture, url: new_picture_path, remote: true, method: 'get') do |form| %>

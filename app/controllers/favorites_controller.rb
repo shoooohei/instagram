@@ -11,6 +11,9 @@ class FavoritesController < ApplicationController
 
 
   def show
+    # @pictures = current_user.favorite_pictures.order(created_at: :desc)
+    # @other_comment = OtherComment.new
+    # render 'pictures/index'
   end
 
   def destroy
@@ -19,7 +22,7 @@ class FavoritesController < ApplicationController
     @picture = Picture.find(params[:id])
     @id_comment = @picture.id
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
 end

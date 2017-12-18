@@ -7,6 +7,12 @@ class PicturesController < ApplicationController
   def index
   end
 
+  def favorites
+    @pictures = current_user.favorite_pictures.order(created_at: :desc)
+    @other_comment = OtherComment.new
+    render 'index'
+  end
+
   def new
     if params[:back]
       @picture = Picture.new(picture_params)

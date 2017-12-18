@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection do
       post :confirm
       get :cancel
+      get :favorites
     end
   end
 
